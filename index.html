@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jogos Reais FIFA — Acesso Limitado</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #08161c, #0d2a33, #123f4d);
+  color: #fff;
+}
+
+.container {
+  max-width: 420px;
+  margin: auto;
+  padding: 25px;
+  text-align: center;
+}
+
+.badge {
+  background: #d32f2f;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.sub {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.timer {
+  background: rgba(0,0,0,0.5);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.timer strong {
+  color: #ff5252;
+  font-size: 22px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.stat {
+  width: 48%;
+  background: rgba(0,0,0,0.45);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 22px;
+  color: #25d366;
+}
+
+.card {
+  background: rgba(0,0,0,0.45);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.card span {
+  color: #25d366;
+  font-weight: bold;
+}
+
+.btn {
+  display: block;
+  background: linear-gradient(90deg, #1ebc5a, #25d366);
+  color: #fff;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 19px;
+  font-weight: bold;
+  margin-top: 20px;
+  box-shadow: 0 0 15px rgba(37,211,102,0.6);
+}
+
+.footer {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-top: 15px;
+}
+
+/* POP-UP */
+.popup {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  display: none;
+  animation: fade 0.5s;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="badge">⚠️ ACESSO LIMITADO HOJE</div>
+
+  <h1>Jogos Reais FIFA</h1>
+  <p class="sub">
+    Estratégia aplicada por quem busca<br>
+    consistência mensal em eSoccer
+  </p>
+
+  <div class="timer">
+    ⏳ Inscrições encerram em:<br>
+    <strong id="countdown">--:--</strong>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <strong id="membros">0</strong>
+      Membros ativos
+    </div>
+    <div class="stat">
+      <strong id="lucro">R$ 0</strong>
+      Média mensal*
+    </div>
+  </div>
+
+  <div class="card">
+    <span>✔ Rafael (SP)</span><br>
+    Fechou o último mês positivo seguindo a gestão do grupo.
+  </div>
+
+  <div class="card">
+    <span>✔ Lucas (PR)</span><br>
+    Método simples, entradas claras e sem loucura.
+  </div>
+
+  <div class="card">
+    <span>✔ André (BA)</span><br>
+    Organização e leitura de jogo fazem a diferença.
+  </div>
+
+  <a class="btn" href="https://t.me/jogosgarantidosfifa" target="_blank">
+    🚀 ENTRAR NO TELEGRAM AGORA
+  </a>
+
+  <div class="footer">
+    *Resultados variam conforme gestão e disciplina individual.
+  </div>
+
+</div>
+
+<div class="popup" id="popup"></div>
+
+<script>
+// CONTADOR
+let membros = 0;
+let lucro = 0;
+let membrosFinal = 1370;
+let lucroFinal = 2100;
+
+let anim = setInterval(() => {
+  if (membros < membrosFinal) membros += 11;
+  if (lucro < lucroFinal) lucro += 35;
+  document.getElementById("membros").innerText = membros;
+  document.getElementById("lucro").innerText = "R$ " + lucro;
+  if (membros >= membrosFinal && lucro >= lucroFinal) clearInterval(anim);
+}, 30);
+
+// URGÊNCIA REAL (15 minutos)
+let tempo = 15 * 60;
+setInterval(() => {
+  let min = Math.floor(tempo / 60);
+  let sec = tempo % 60;
+  document.getElementById("countdown").innerText =
+    min.toString().padStart(2,'0') + ":" + sec.toString().padStart(2,'0');
+  if (tempo > 0) tempo--;
+}, 1000);
+
+// POP-UP SOCIAL
+const nomes = ["Carlos", "Felipe", "Matheus", "Bruno", "Renato", "Igor"];
+const cidades = ["SP", "RJ", "MG", "BA", "PR", "RS"];
+
+setInterval(() => {
+  let nome = nomes[Math.floor(Math.random() * nomes.length)];
+  let cidade = cidades[Math.floor(Math.random() * cidades.length)];
+  let popup = document.getElementById("popup");
+  popup.innerText = `🔥 ${nome} (${cidade}) entrou agora`;
+  popup.style.display = "block";
+  setTimeout(() => popup.style.display = "none", 3500);
+}, 8000);
+</script>
+
+</body>
+</html>
