@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Placares Exatos FIFA | Jogos Garantidos</title>
 
+<link rel="icon" type="image/png" href="hero.jpg">
+
 <style>
 * {
   box-sizing: border-box;
@@ -12,87 +14,99 @@
 
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background: radial-gradient(circle at top, #1a1a1a, #000);
   color: #fff;
 }
 
-/* CONTAINER */
 .container {
   max-width: 420px;
   margin: auto;
-  padding: 25px;
-  text-align: center;
+  padding: 0 18px 40px;
 }
 
 /* HERO */
-.logo img {
+.hero {
+  position: relative;
+  margin-top: 20px;
+}
+
+.hero img {
   width: 100%;
-  border-radius: 12px;
-  margin-bottom: 20px;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
 }
 
-h1 {
-  font-size: 28px;
-  margin: 10px 0 5px;
-  color: #f5d37b;
+/* TITULO */
+.title {
+  text-align: center;
+  margin: 20px 0 5px;
 }
 
-.sub {
-  font-size: 15px;
-  letter-spacing: 1px;
-  opacity: 0.9;
-  margin-bottom: 20px;
+.title h1 {
+  font-size: 30px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #ffd36b, #f5b942);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.title span {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 2px;
+  opacity: 0.85;
+  margin-top: 4px;
 }
 
 /* TIMER */
 .timer {
-  background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,215,0,0.2);
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,215,0,0.15);
+  padding: 14px;
+  border-radius: 14px;
+  text-align: center;
+  margin: 20px 0;
 }
 
-.timer span {
+.timer small {
   display: block;
-  font-size: 14px;
   opacity: 0.8;
 }
 
 .timer strong {
-  font-size: 28px;
+  font-size: 30px;
   color: #ff4d4d;
 }
 
 /* STATS */
 .stats {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 .stat {
-  width: 48%;
+  flex: 1;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,215,0,0.15);
   padding: 15px;
-  border-radius: 12px;
+  border-radius: 14px;
+  text-align: center;
 }
 
 .stat strong {
-  display: block;
-  font-size: 24px;
+  font-size: 22px;
   color: #4cff9f;
 }
 
-/* CARDS */
+/* DEPOIMENTOS */
 .card {
   background: rgba(255,255,255,0.05);
-  border-left: 3px solid #25d366;
+  border-left: 4px solid #25d366;
   padding: 14px;
-  border-radius: 10px;
-  text-align: left;
+  border-radius: 12px;
   margin-bottom: 12px;
   font-size: 14px;
 }
@@ -104,37 +118,40 @@ h1 {
 
 /* BOTÃO */
 .btn {
+  margin-top: 30px;
   display: block;
-  margin-top: 25px;
+  width: 100%;
   background: linear-gradient(90deg, #1ebc5a, #25d366);
   padding: 18px;
-  border-radius: 14px;
-  text-decoration: none;
-  color: #000;
+  border-radius: 16px;
+  text-align: center;
   font-size: 18px;
   font-weight: bold;
-  box-shadow: 0 0 20px rgba(37,211,102,0.6);
+  text-decoration: none;
+  color: #000;
+  box-shadow: 0 0 30px rgba(37,211,102,0.7);
 }
 
 /* FOOTER */
 .footer {
-  margin-top: 20px;
+  text-align: center;
   font-size: 12px;
   opacity: 0.6;
+  margin-top: 15px;
 }
 
 /* POPUP */
 .popup {
   position: fixed;
-  bottom: 20px;
+  bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0,0,0,0.85);
   padding: 12px 18px;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 14px;
   display: none;
-  border: 1px solid rgba(255,215,0,0.2);
+  border: 1px solid rgba(255,215,0,0.25);
 }
 </style>
 </head>
@@ -143,34 +160,31 @@ h1 {
 
 <div class="container">
 
-  <!-- LOGO -->
-  <div class="logo">
-    <!-- SUBA SUA IMAGEM NO REPOSITÓRIO E TROQUE O NOME AQUI -->
-    <img src="logo.png" alt="Placares Exatos FIFA">
+  <div class="hero">
+    <img src="hero.jpg" alt="Placares Exatos FIFA">
   </div>
 
-  <h1>PLACARES EXATOS FIFA</h1>
-  <div class="sub">JOGOS GARANTIDOS</div>
+  <div class="title">
+    <h1>PLACARES EXATOS FIFA</h1>
+    <span>JOGOS GARANTIDOS</span>
+  </div>
 
-  <!-- TIMER -->
   <div class="timer">
-    <span>Inscrições encerram em:</span>
+    <small>Inscrições encerram em:</small>
     <strong id="countdown">15:00</strong>
   </div>
 
-  <!-- STATS -->
   <div class="stats">
     <div class="stat">
-      <strong id="membros">0</strong>
+      <strong id="membros">1370</strong>
       Membros ativos
     </div>
     <div class="stat">
-      <strong id="lucro">R$ 0</strong>
+      <strong>R$ 2.100</strong>
       Média mensal*
     </div>
   </div>
 
-  <!-- DEPOIMENTOS -->
   <div class="card">
     <span>✔ Rafael (SP)</span><br>
     Fechou o último mês positivo seguindo a gestão do grupo.
@@ -186,7 +200,6 @@ h1 {
     Organização e leitura de jogo fazem a diferença.
   </div>
 
-  <!-- BOTÃO -->
   <a class="btn" href="https://t.me/jogosgarantidosfifa" target="_blank">
     🚀 ENTRAR NO TELEGRAM AGORA
   </a>
@@ -200,22 +213,6 @@ h1 {
 <div class="popup" id="popup"></div>
 
 <script>
-// ANIMAÇÃO DE NÚMEROS
-let membros = 0;
-let lucro = 0;
-const membrosFinal = 1370;
-const lucroFinal = 2100;
-
-const anim = setInterval(() => {
-  if (membros < membrosFinal) membros += 11;
-  if (lucro < lucroFinal) lucro += 35;
-
-  document.getElementById("membros").innerText = membros;
-  document.getElementById("lucro").innerText = "R$ " + lucro;
-
-  if (membros >= membrosFinal && lucro >= lucroFinal) clearInterval(anim);
-}, 30);
-
 // CONTADOR
 let tempo = 15 * 60;
 setInterval(() => {
@@ -226,16 +223,16 @@ setInterval(() => {
   if (tempo > 0) tempo--;
 }, 1000);
 
-// POPUP SOCIAL
-const nomes = ["Carlos", "Felipe", "Matheus", "Bruno", "Renato", "Igor"];
-const cidades = ["SP", "RJ", "MG", "BA", "PR", "RS"];
+// POPUP
+const nomes = ["Carlos", "Bruno", "Felipe", "Igor"];
+const cidades = ["SP", "MG", "PR", "RJ"];
 
 setInterval(() => {
   const popup = document.getElementById("popup");
   popup.innerText = `🔥 ${nomes[Math.floor(Math.random()*nomes.length)]} (${cidades[Math.floor(Math.random()*cidades.length)]}) entrou agora`;
   popup.style.display = "block";
   setTimeout(() => popup.style.display = "none", 3500);
-}, 8000);
+}, 9000);
 </script>
 
 </body>
